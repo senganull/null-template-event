@@ -1,14 +1,11 @@
---[[
-==========================================
-Client to Server
-プレイヤーから送られてきたデータを受け取る部分
-==========================================
-]]
+--==========================================
+--クライアントからサーバーへ
+--プレイヤーから送られてきたデータを受け取る部分
+--==========================================
 
---クライアントから送信されるイベント名を登録する、
+--クライアントから送信されるイベント名を登録する
 RegisterNetEvent('null-template-event:serverAction')
 
---イベント受信された時の処理を定義
 AddEventHandler('null-template-event:serverAction', function(args1, args2)
     -- 'source'はLuaが自動的に提供する変数,送信してきたプレイヤーのサーバーID(数値)が入っている。
     -- 非同期処理などで消える可能性があるので、ローカル変数に保存するのが定石
@@ -20,16 +17,12 @@ AddEventHandler('null-template-event:serverAction', function(args1, args2)
     --ここでデータベース保存や、全プレイヤーへの通知などを行う。
 end)
 
---[[
-==========================================
-Server to Client
-サーバーから「接続している全員」にイベントを送る部分
-==========================================
-]]
+--==========================================
+--サーバーからクライアントへ
+--サーバーから「接続している全員」にイベントを送る部分
+--==========================================
 
---　テスト用コマンド:
 RegisterCommand('test_all', function(source, args)
-    --　全員に送るデータ
     local msg = "これは全員への通知です。"
     local data = "Important Data"
 
@@ -43,19 +36,17 @@ RegisterCommand('test_all', function(source, args)
 
 end, false)
 
---[[
-==========================================
-Server to Client
-サーバーから「特定のプレイヤー」だけにイベントを送る部分
-==========================================
-]]
+--==========================================
+--サーバーからクライアントへ
+--サーバーから「特定のプレイヤー」だけにイベントを送る部分
+--==========================================
 
 RegisterCommand('test_me', function(source, args)
     local targetId = source
     local msg = "あなただけの秘密メッセージです。"
     local data = "Personal Data"
 
-    TriggerClientEvent('null-test-event:clientAction', targetId, msg, data)
+    TriggerClientEvent('null-template-event:clientAction', targetId, msg, data)
 
     print('ID: ' .. targetId .. 'へ個別にイベントを送信しました。')
 end, false)

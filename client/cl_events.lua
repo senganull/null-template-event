@@ -1,21 +1,17 @@
---[[
-==========================================
-Server to Client
-サーバーから特定の処理命令をされた時に動く部分
-==========================================
-]]
+--==========================================
+--サーバーからクライアントへ
+--サーバーから特定の処理命令をされた時に動く部分
+--==========================================
 
---[[
-ネットワークイベントとして登録することを宣言
-これを書かないと、サーバーからこのイベント名で呼び出すことができない。
-'null-template-event:clientAction'は任意のイベント名に
-]]
+
+--ネットワークイベントとして登録することを宣言
+--これを書かないと、サーバーからこのイベント名で呼び出すことができない。
+--'null-template-event:clientAction'は任意のイベント名に
 
 RegisterNetEvent('null-template-event:clientAction')
 
 --　イベントが呼び出された際の具体的な処理を定義する。
 AddEventHandler('null-template-event:clientAction', function(args1, args2)
-    -- ここに実行したい処理を書く。
 
     -- デバッグメッセージ
     print('サーバーからイベントを受信しました: null-template-event:clientAction')
@@ -27,16 +23,12 @@ AddEventHandler('null-template-event:clientAction', function(args1, args2)
     --実用例 : 通知表示する、アイテムを付与するUIを表示するなど
 end)
 
+--==========================================
+--クライアントからサーバーへ
+--プレイヤーの操作などをサーバーへ通知する部分
+--==========================================
 
---[[
-==========================================
-Client to Server
-プレイヤーの操作などをサーバーへ通知する部分
-==========================================
-]]
-
---動作確認用コマンド
-RegisterCommand('test_send', function()
+RegisterCommand('test_sendtoserver', function()
     --サーバーへ送りたいデータを用意
     local message = "Hello from Client"
     local count = 123
