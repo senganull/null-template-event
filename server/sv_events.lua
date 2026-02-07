@@ -37,11 +37,11 @@ RegisterCommand('test_all', function(source, args)
     TriggerClientEventの第二引数に'-1'を指定すると全員に送信される。
     構文: TriggerClientEvent(イベント名, 送信先ID, 引数1, 引数2, ...)
     ]]
-    TriggerClientEvent('null-test-event:clientAction', -1, msg, data)
+    TriggerClientEvent('null-template-event:clientAction', -1, msg, data)
 
     print('全プレイヤーへイベントを送信しました。')
 
-end, flase)
+end, false)
 
 --[[
 ==========================================
