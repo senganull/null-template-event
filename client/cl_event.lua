@@ -49,4 +49,4 @@ RegisterCommand('test_send', function()
     TriggerServerEvent('null-template-event:serverAction', message, count)
 
     print('サーバーへデータを送信しました。')
-end,false)
+end, false)
